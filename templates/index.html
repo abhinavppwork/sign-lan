@@ -1,1 +1,221 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SignBridge — Sign recognition</title><style>:root{--ink:#171714;--muted:#74736b;--line:#e9e7df;--surface:#fff;--canvas:#f8f7f2;--yellow:#f6c844;--yellow-deep:#dba900;--yellow-soft:#fff4c8;--green:#267653}*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button{font:inherit}.shell{max-width:1240px;margin:auto;padding:24px 28px 44px}.topbar{height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);margin-bottom:34px}.brand{display:flex;align-items:center;gap:11px;font-size:18px;font-weight:760;letter-spacing:-.035em}.brand-mark{width:31px;height:31px;display:grid;place-items:center;background:var(--yellow);border-radius:9px}.brand small{color:var(--muted);font-size:12px;font-weight:600;letter-spacing:0;margin-left:4px}.top-actions{display:flex;align-items:center;gap:12px}.help{color:var(--muted);text-decoration:none;font-weight:600}.avatar{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:#272721;color:#fff;font-size:11px;font-weight:700}.eyebrow{margin:0 0 7px;color:#8b6c08;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.intro{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:26px}.intro h1{margin:0;font-size:clamp(26px,4vw,38px);letter-spacing:-.055em;line-height:1.1}.intro p{max-width:410px;margin:0;color:var(--muted);font-size:15px}.status-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.04em}.status-dot{width:7px;height:7px;border-radius:50%;background:#a8a79f}.status-pill.live{border-color:#bfe4d2;color:var(--green);background:#f3fbf7}.status-pill.live .status-dot{background:var(--green);box-shadow:0 0 0 3px #dff3e9}.workspace{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,.82fr);gap:22px}.card{background:var(--surface);border:1px solid var(--line);border-radius:16px}.camera-card{overflow:hidden}.card-header{display:flex;justify-content:space-between;align-items:center;min-height:58px;padding:0 20px;border-bottom:1px solid var(--line)}.card-title{font-size:14px;font-weight:750}.camera{position:relative;aspect-ratio:16/9;background:#20201d;overflow:hidden}.camera img{display:none;width:100%;height:100%;object-fit:cover}.camera.active img{display:block}.camera.active .empty{display:none}.empty{position:absolute;inset:0;display:grid;place-items:center;padding:26px;color:#d2d0c8;text-align:center}.empty-inner{max-width:280px}.camera-icon{width:45px;height:45px;display:grid;place-items:center;margin:0 auto 13px;border-radius:13px;background:#363630;color:var(--yellow);font-size:20px}.empty strong{display:block;color:#fff;font-size:15px}.empty p{margin:5px 0 0;font-size:13px;color:#aaa89f}.camera-footer{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;color:var(--muted);font-size:12px}.camera-footer span{display:flex;align-items:center;gap:7px}.camera-footer i{width:6px;height:6px;border-radius:50%;background:var(--yellow-deep)}.insight{display:flex;flex-direction:column}.insight-body{padding:23px 22px 20px}.detected-label{color:var(--muted);font-size:12px;font-weight:700}.letter{margin:7px 0 1px;font-size:100px;line-height:.94;font-weight:780;letter-spacing:-.08em}.reading{min-height:22px;color:var(--muted);font-size:13px}.progress-row{display:flex;justify-content:space-between;margin:27px 0 8px;font-size:12px;color:var(--muted);font-weight:650}.progress-track{height:7px;border-radius:999px;background:#f0eee6;overflow:hidden}.progress-track div{width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#f6c844,#efad18);transition:width .18s ease}.metric{display:flex;align-items:center;gap:10px;margin-top:21px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.metric b{color:var(--ink);font-size:14px}.metric-icon{width:29px;height:29px;display:grid;place-items:center;border-radius:8px;background:var(--yellow-soft);color:#936f00}.controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:auto;padding:0 22px 22px}.button{min-height:42px;border:1px solid transparent;border-radius:9px;cursor:pointer;font-weight:750;transition:.18s ease}.button.primary{background:var(--yellow);color:#302400}.button.primary:hover{background:#ffd55d;transform:translateY(-1px)}.button.secondary{background:#fff;border-color:var(--line);color:#3d3c36}.button.secondary:hover{background:#faf9f4}.button:disabled{cursor:not-allowed;opacity:.45}.history-card{margin-top:22px}.history-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 0}.history-note{color:var(--muted);font-size:12px}.chips{display:flex;align-items:center;gap:9px;min-height:74px;padding:14px 20px 19px}.chip{width:38px;height:38px;display:grid;place-items:center;border:1px solid #f0d779;border-radius:10px;background:var(--yellow-soft);color:#624c00;font-size:15px;font-weight:800}.no-history{color:var(--muted);font-size:13px}.tip{display:flex;gap:10px;margin-top:22px;padding:14px 16px;border:1px solid #f2df9d;border-radius:12px;background:#fffbec;color:#655c40;font-size:12px}.tip b{color:#463d20}.tip-mark{color:#a77c00;font-size:15px;line-height:1}@media(max-width:800px){.shell{padding:14px 16px 32px}.topbar{margin-bottom:28px}.intro{display:block}.intro p{margin-top:12px}.workspace{grid-template-columns:1fr}.letter{font-size:86px}.help{display:none}}@media(max-width:420px){.top-actions .status-pill{display:none}.controls{grid-template-columns:1fr}.camera{aspect-ratio:4/3}}</style></head><body><main class="shell"><nav class="topbar"><div class="brand"><span class="brand-mark">✦</span>SignBridge <small>Workspace</small></div><div class="top-actions"><a class="help" href="#tip">How it works</a><span class="avatar">SB</span></div></nav><section class="intro"><div><p class="eyebrow">Live recognition</p><h1>Read signs with confidence.</h1></div><p>Keep one hand in view, hold the gesture steady, and SignBridge will identify and speak the letter.</p></section><section class="workspace"><article class="card camera-card"><header class="card-header"><span class="card-title">Camera preview</span><span class="status-pill" id="badge"><i class="status-dot"></i>CAMERA PAUSED</span></header><div class="camera" id="camera"><img id="feed" alt="Live sign recognition camera"><div class="empty"><div class="empty-inner"><div class="camera-icon">◉</div><strong>Your camera is ready</strong><p>Start a session to begin recognizing signs.</p></div></div></div><footer class="camera-footer"><span><i></i> Real-time gesture analysis</span><span id="connection">Ready when you are</span></footer></article><aside class="card insight"><header class="card-header"><span class="card-title">Recognition</span><span class="status-pill">LIVE DATA</span></header><div class="insight-body"><div class="detected-label">CURRENT LETTER</div><div class="letter" id="letter">—</div><div class="reading" id="status">Camera paused</div><div class="progress-row"><span>Hold progress</span><span id="progress-value">0%</span></div><div class="progress-track"><div id="progress"></div></div><div class="metric"><div class="metric-icon">⌁</div><div><b id="fps">0 FPS</b><br>Processing speed</div></div></div><div class="controls"><button class="button primary" id="start">Start camera</button><button class="button secondary" id="stop" disabled>End session</button></div></aside></section><section class="card history-card"><div class="history-head"><div><p class="eyebrow">Session activity</p><div class="card-title">Recently spoken letters</div></div><span class="history-note">Your latest 8 recognitions</span></div><div class="chips" id="history"><span class="no-history">Your recognized letters will appear here.</span></div></section><aside class="tip" id="tip"><span class="tip-mark">✦</span><span><b>For best results:</b> use one hand at a time, keep it fully in frame, and hold the final sign until the progress bar completes.</span></aside></main><script>const $=id=>document.getElementById(id);async function post(p){const r=await fetch(p,{method:'POST'});if(!r.ok)throw new Error();return r.json()}function setRun(r){$('start').disabled=r;$('stop').disabled=!r;$('badge').classList.toggle('live',r);$('badge').innerHTML=`<i class="status-dot"></i>${r?'CAMERA LIVE':'CAMERA PAUSED'}`;$('camera').classList.toggle('active',r);$('connection').textContent=r?'Streaming securely':'Ready when you are';if(!r)$('feed').removeAttribute('src')}function render(s){$('letter').textContent=s.letter;$('status').textContent=s.status;$('progress').style.width=s.progress+'%';$('progress-value').textContent=s.progress+'%';$('fps').textContent=s.fps+' FPS';$('history').innerHTML=s.history.length?s.history.map(x=>`<span class="chip">${x}</span>`).join(''):'<span class="no-history">Your recognized letters will appear here.</span>';setRun(s.running)}async function refresh(){try{const r=await fetch('/api/status');if(!r.ok)throw new Error();render(await r.json())}catch(e){$('status').textContent='Connection unavailable'}}$('start').onclick=async()=>{try{await post('/api/start');$('feed').src='/video_feed?'+Date.now();setRun(true);refresh()}catch(e){$('status').textContent='Could not start camera'}};$('stop').onclick=async()=>{try{await post('/api/stop');setRun(false);refresh()}catch(e){$('status').textContent='Could not stop camera'}};setInterval(refresh,500);refresh()</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SignBridge – Real-time sign language detection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3f4f6;
+  --ink:#14161c;
+  --mute:#6b7080;
+  --blue:#2335f0;
+  --blue-deep:#1a28c4;
+  --sun:#ffd83d;
+  --white:#fbfbff;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font:15px/1.5 var(--text)}
+
+.page{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(340px,1fr);min-height:100vh}
+
+/* ---------- left: camera ---------- */
+.left{padding:36px clamp(24px,4vw,56px) 40px;display:flex;flex-direction:column;gap:26px}
+.masthead{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.masthead h1{font:800 30px/1 var(--display);letter-spacing:-.035em}
+.masthead p{margin-top:7px;color:var(--mute)}
+.state{display:inline-flex;align-items:center;gap:8px;padding-top:4px;font-weight:500;color:var(--mute);white-space:nowrap}
+.state i{width:9px;height:9px;border-radius:50%;background:#b9bcc8}
+.state.on{color:var(--ink)}
+.state.on i{background:#16b364;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(22,179,100,.45)}50%{box-shadow:0 0 0 6px rgba(22,179,100,0)}}
+
+.stage{position:relative;width:100%;aspect-ratio:4/3;max-height:calc(100vh - 230px);margin:0 auto;border-radius:22px;background:#15171d;overflow:hidden}
+.stage img{display:none;width:100%;height:100%;object-fit:contain}
+.stage.live img{display:block}
+.idle{position:absolute;inset:0;display:grid;place-items:center;padding:30px;text-align:center;color:#a9adbb}
+.idle b{display:block;margin-bottom:6px;font:600 22px/1.2 var(--display);color:#fff;letter-spacing:-.02em}
+.stage.live .idle{display:none}
+.fps{position:absolute;right:14px;bottom:14px;padding:5px 11px;border-radius:99px;background:rgba(10,11,16,.62);color:#fff;font-size:13px;font-weight:500;backdrop-filter:blur(6px);font-variant-numeric:tabular-nums}
+
+.controls{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.toggle{border:0;border-radius:99px;padding:15px 30px;background:var(--ink);color:#fff;font:600 15px var(--text);cursor:pointer;transition:background .15s,transform .1s}
+.toggle:hover{background:#2a2e3a}
+.toggle:active{transform:scale(.97)}
+.toggle.stop{background:#e5383b}
+.toggle.stop:hover{background:#c92d30}
+.toggle:disabled{opacity:.5;cursor:wait}
+.tip{max-width:36ch;color:var(--mute);font-size:14px}
+
+/* ---------- right: the readout ---------- */
+.right{background:var(--blue);color:var(--white);padding:36px clamp(24px,3.4vw,48px) 40px;display:flex;flex-direction:column;justify-content:space-between;gap:30px}
+.label{font-weight:500;color:rgba(251,251,255,.68)}
+
+.reading{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:240px}
+.letter{font:800 clamp(170px,19vw,290px)/.82 var(--display);letter-spacing:-.06em;margin:14px 0 18px -.04em}
+.letter.pop{animation:pop .28s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes pop{from{transform:scale(.86);opacity:.4}to{transform:scale(1);opacity:1}}
+.status{font-size:16px;font-weight:500;min-height:24px}
+
+.hold-top{display:flex;justify-content:space-between;margin-bottom:10px;font-weight:500}
+.hold-top span:last-child{font-variant-numeric:tabular-nums}
+.track{height:14px;border-radius:99px;background:var(--blue-deep);overflow:hidden}
+.track div{height:100%;width:0;border-radius:inherit;background:var(--sun);transition:width .2s ease-out}
+
+.spoken{padding-top:22px;border-top:1px solid rgba(251,251,255,.22)}
+.chips{display:flex;flex-wrap:wrap;gap:8px 6px;min-height:46px;margin-top:10px;align-items:center}
+.chip{font:800 34px/1 var(--display);letter-spacing:-.03em;min-width:34px;text-align:center}
+.chip:last-child{color:var(--sun)}
+.none{color:rgba(251,251,255,.6)}
+
+button:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+
+@media(max-width:900px){
+  .page{grid-template-columns:1fr}
+  .stage{max-height:none}
+  .right{border-radius:28px 28px 0 0}
+  .reading{min-height:0}
+  .letter{font-size:170px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <section class="left">
+    <header class="masthead">
+      <div>
+        <h1>SignBridge</h1>
+        <p>Real-time sign language detection</p>
+      </div>
+      <span class="state" id="state"><i></i><span id="stateText">Camera off</span></span>
+    </header>
+
+    <div class="stage" id="camera">
+      <img id="feed" alt="Live camera feed">
+      <div class="idle"><div><b>Camera is off</b>Start the camera to begin detecting ASL letters.</div></div>
+      <span class="fps" id="fps">0 fps</span>
+    </div>
+
+    <div class="controls">
+      <button class="toggle" id="toggle">Start camera</button>
+      <p class="tip">Keep one hand fully in frame and hold the sign until the bar fills.</p>
+    </div>
+  </section>
+
+  <section class="right" aria-live="polite">
+    <div class="reading">
+      <p class="label">Detected letter</p>
+      <div class="letter" id="letter">—</div>
+      <p class="status" id="status">Waiting for camera</p>
+    </div>
+
+    <div class="hold">
+      <div class="hold-top"><span>Hold steady</span><span id="pct">0%</span></div>
+      <div class="track"><div id="progress"></div></div>
+    </div>
+
+    <div class="spoken">
+      <p class="label">Spoken letters</p>
+      <div class="chips" id="history"><span class="none">Nothing spoken yet.</span></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+let isRunning = false, lastLetter = null, busy = false;
+
+async function post(path){
+  const r = await fetch(path, {method:'POST'});
+  if(!r.ok) throw new Error(path);
+  return r.json();
+}
+
+function setRunning(v){
+  isRunning = v;
+  $('camera').classList.toggle('live', v);
+  $('state').classList.toggle('on', v);
+  $('stateText').textContent = v ? 'Camera on' : 'Camera off';
+  const t = $('toggle');
+  t.textContent = v ? 'Stop camera' : 'Start camera';
+  t.classList.toggle('stop', v);
+  if(!v) $('feed').removeAttribute('src');
+}
+
+function render(s){
+  if(s.letter !== lastLetter){
+    const el = $('letter');
+    el.textContent = s.letter;
+    el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+    lastLetter = s.letter;
+  }
+  $('status').textContent = s.status;
+  $('fps').textContent = s.fps + ' fps';
+  $('progress').style.width = s.progress + '%';
+  $('pct').textContent = s.progress + '%';
+
+  const h = $('history');
+  h.innerHTML = '';
+  if(s.history.length){
+    s.history.forEach(x => {
+      const c = document.createElement('span');
+      c.className = 'chip';
+      c.textContent = x;
+      h.appendChild(c);
+    });
+  } else {
+    h.innerHTML = '<span class="none">Nothing spoken yet.</span>';
+  }
+
+  if(s.running !== isRunning){
+    setRunning(s.running);
+    if(s.running && !$('feed').getAttribute('src')) $('feed').src = '/video_feed?' + Date.now();
+  }
+}
+
+async function refresh(){
+  try{
+    const r = await fetch('/api/status');
+    if(!r.ok) throw new Error();
+    render(await r.json());
+  }catch(e){
+    $('status').textContent = 'Lost connection to the server';
+  }
+}
+
+$('toggle').onclick = async () => {
+  if(busy) return;
+  busy = true; $('toggle').disabled = true;
+  try{
+    if(isRunning){
+      await post('/api/stop');
+      setRunning(false);
+    } else {
+      await post('/api/start');
+      $('feed').src = '/video_feed?' + Date.now();
+      setRunning(true);
+    }
+    refresh();
+  }catch(e){
+    $('status').textContent = isRunning ? 'Could not stop the camera' : 'Could not start the camera. Check that it is not used by another app.';
+  }finally{
+    busy = false; $('toggle').disabled = false;
+  }
+};
+
+setInterval(refresh, 450);
+refresh();
+</script>
+</body>
+</html>
