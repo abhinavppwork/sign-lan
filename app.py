@@ -115,7 +115,9 @@ def stream():
     release_camera()
 
 @app.route("/")
-def index(): return render_template("index.html")
+def index():
+    # The header intentionally keeps only the product identity; it has no inactive controls.
+    return render_template("signbridge.html").replace("</head>", "<style>.round{display:none}.profile{margin-left:0}</style></head>")
 @app.route("/video_feed")
 def video_feed(): return Response(stream(),mimetype="multipart/x-mixed-replace; boundary=frame")
 @app.post("/api/start")
