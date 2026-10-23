@@ -60,7 +60,7 @@ Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in a browser, then select **
 2. The app creates a padded crop around that hand, regardless of where it is in the frame.
 3. The YOLO model classifies the cropped sign as an A–Z letter.
 4. Recent predictions are combined over a short window to reject noisy single frames.
-5. The same letter must remain stable for `1.5` seconds before it is spoken.
+5. The same letter must remain stable for `0.75` seconds before it is spoken.
 
 This makes recognition much less dependent on hand placement or camera distance than a fixed detection box.
 
@@ -79,7 +79,7 @@ You can tune these constants at the top of `app.py`:
 | Setting | Default | Meaning |
 | --- | ---: | --- |
 | `CONFIDENCE` | `0.55` | Minimum YOLO confidence required for a sign |
-| `STABLE_SECONDS` | `1.5` | Time a sign must be held before speech |
+| `STABLE_SECONDS` | `0.75` | Time a sign must be held before speech |
 | `HOLD_SECONDS` | `0.85` | Time to tolerate a brief lost hand/prediction |
 | `SWITCH_SECONDS` | `0.60` | Time a new sign must persist before replacing the old one |
 

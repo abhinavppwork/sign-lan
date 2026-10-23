@@ -4,7 +4,7 @@ import cv2, pyttsx3, mediapipe as mp
 from flask import Flask, Response, jsonify, render_template
 from ultralytics import YOLO
 
-MODEL_PATH="best.pt"; CONFIDENCE=.55; STABLE_SECONDS=1.5; MIN_BOX_SIZE=35
+MODEL_PATH="best.pt"; CONFIDENCE=.55; STABLE_SECONDS=.75; MIN_BOX_SIZE=35
 HOLD_SECONDS=.85; SWITCH_SECONDS=.60; WINDOW_SECONDS=.45
 app=Flask(__name__); model=YOLO(MODEL_PATH); speech_queue=queue.Queue()
 hand_options=mp.tasks.vision.HandLandmarkerOptions(
