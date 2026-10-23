@@ -21,7 +21,7 @@ SignBridge AI is a browser-based ASL alphabet recognition project. It uses a web
 | File | Purpose |
 | --- | --- |
 | `app.py` | Flask server, camera processing, hand tracking, recognition, and speech |
-| `templates/index.html` | Browser dashboard |
+| `templates/signbridge.html` | Browser dashboard |
 | `best.pt` | Custom trained ASL alphabet YOLO model |
 | `hand_landmarker.task` | MediaPipe hand landmark model |
 
@@ -31,17 +31,20 @@ SignBridge AI is a browser-based ASL alphabet recognition project. It uses a web
 - A webcam
 - Windows is recommended for the current `pyttsx3` speech setup
 
-Install the required packages in a virtual environment:
+Install the exact, tested runtime environment in a virtual environment. The
+included `requirements.txt` pins all packages and prevents MediaPipe from
+replacing the OpenCV build used by YOLO.
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install ultralytics opencv-python pyttsx3 flask
-python -m pip install mediapipe --no-deps
-python -m pip install absl-py flatbuffers sounddevice cffi
+python -m pip install --upgrade pip
+python -m pip install --no-deps -r requirements.txt
 ```
 
-`mediapipe --no-deps` intentionally preserves the installed OpenCV package. On some Windows setups, MediaPipe's bundled OpenCV dependency can conflict with or lock the active OpenCV binary.
+This dependency set was verified with Python 3.11.9 on Windows. The project
+also needs `best.pt` and `hand_landmarker.task` alongside `app.py`; keep those
+files when copying the project to another machine.
 
 ## Run locally
 
